@@ -2,7 +2,8 @@
 
 **Module:** IFTE0007 Decentralised Finance and Blockchain, UCL  
 **Network:** Sepolia Testnet  
-**Compiler:** Solidity 0.4.21  
+**Compiler:** Solidity 0.8.0  
+**Library:** OpenZeppelin ERC-20  
 
 ---
 
@@ -17,12 +18,21 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 
 ---
 
-## Contract Files
+## Contract File
 
 | File | Description |
 |---|---|
-| `contracts/EIP20_CAVE.sol` | Main CAVE token contract |
-| `contracts/EIP20Interface.sol` | EIP-20 interface inherited by CAVE |
+| `contracts/EIP20_CAVE.sol` | Main CAVE token contract — inherits OpenZeppelin ERC-20 |
+
+---
+
+## Key Design Features
+
+- **OpenZeppelin ERC-20** — standard transfer, approve, allowance, and balanceOf functions inherited automatically
+- **Decimals = 0** — one token represents one bottle of production — no fractional tokens
+- **Vintage year stamping** — `_update()` override stamps each recipient with the current vintage year on every token transfer, preventing previous cycle tokens from claiming current cycle rights
+- **Independent rights activation** — entitlement right activated separately from revenue loading via `activateEntitlement()`
+- **Immutable constants** — `DISTRIBUTION_PERCENTAGE = 30` and `DISCOUNT_BPS = 2000` cannot be changed by anyone after deployment
 
 ---
 
@@ -39,6 +49,20 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 
 ---
 
+## Testnet Demonstration Sequence
+
+```
+mintVintage(2024, 445000)        — admin wallet
+transfer(investorAddress, 200)   — admin wallet
+activateEntitlement()            — admin wallet
+useEntitlement()                 — investor wallet (100+ tokens required)
+loadRevenue(1000000)             — admin wallet
+claimDistribution()              — investor wallet
+closeVintage()                   — admin wallet
+```
+
+---
+
 ## Disclaimer
 
-This contract is a proof-of-concept submitted for academic purposes as part of IFTE0007 at UCL. It is deployed on the Sepolia testnet only and is not intended for production use. 
+This contract is a proof-of-concept submitted for academic purposes as part of IFTE0007 at UCL. It is deployed on the Sepolia testnet only and is not intended for production use.
