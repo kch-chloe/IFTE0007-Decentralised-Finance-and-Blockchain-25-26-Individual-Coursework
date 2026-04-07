@@ -41,20 +41,6 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 
 ---
 
-## Testnet Demonstration Sequence
-
-```
-mintVintage(2024, 445000)        — admin wallet
-transfer(investorAddress, 200)   — admin wallet
-activateEntitlement()            — admin wallet
-useEntitlement()                 — investor wallet (100+ tokens required)
-loadRevenue(1000000)             — admin wallet
-claimDistribution()              — investor wallet
-closeVintage()                   — admin wallet
-```
-
----
-
 ## Disclaimer
 
 This contract is a proof-of-concept submitted for academic purposes as part of IFTE0007 at UCL. It is deployed on the Sepolia testnet only and is not intended for production use.
