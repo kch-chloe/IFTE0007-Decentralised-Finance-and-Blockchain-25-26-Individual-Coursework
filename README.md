@@ -1,9 +1,6 @@
-# CAVE Token — Chateau Access and Vintage Entitlement
+# CAVE Token — Chateau Access and Vintage Entitlement 
 
-**Module:** IFTE0007 Decentralised Finance and Blockchain, UCL  
-**Network:** Sepolia Testnet  
-**Compiler:** Solidity 0.8.0  
-**Library:** OpenZeppelin ERC-20  
+## **Module:** IFTE0007 Decentralised Finance and Blockchain, UCL 
 
 ---
 
@@ -18,6 +15,20 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 
 ---
 
+## Deployment
+
+| | |
+|---|---|
+| **Network** | Sepolia Testnet |
+| **Standard** | ERC-20 (OpenZeppelin) |
+| **Solidity Version** | ^0.8.0 |
+| **Contract Address** | 0x8b02a78a192fc84c8E4Df8AbE756917Ddc732956 |
+| **Token Symbol** | CAVE |
+| **Total Supply** | 298,000 |
+| **Decimals** | 0 |
+
+---
+
 ## Key Design Features
 
 - **OpenZeppelin ERC-20** — standard transfer, approve, allowance, and balanceOf functions inherited automatically
@@ -28,16 +39,27 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 
 ---
 
-## Custom Functions
+## Contract Functions
 
 | Function | Caller | Description |
 |---|---|---|
-| `mintVintage(year, supply)` | Admin | Mints fixed supply after harvest confirmation |
-| `activateEntitlement()` | Admin | Makes wine discount available to eligible holders |
-| `loadRevenue(totalAmount)` | Admin | Loads confirmed revenue — 30% calculated automatically |
-| `claimDistribution()` | Investor | Claims pro-rata revenue share |
-| `useEntitlement()` | Investor | Exercises 20% wine discount — verified on-chain |
-| `closeVintage()` | Admin | Burns remaining admin tokens — cycle ends |
+| `mintVintage(year, supply)` | Admin | Opens a new vintage cycle and mints fixed supply after harvest confirmation |
+| `activateEntitlement()` | Admin | Activates wine purchase entitlement right independently of revenue loading |
+| `loadRevenue(totalAmount)` | Admin | Loads verified estate revenue — 30% holder distribution calculated automatically |
+| `claimDistribution()` | Token holder | Emits on-chain proof of pro-rata revenue claim — once per wallet per cycle |
+| `useEntitlement()` | Token holder | Records entitlement activation as on-chain proof of discount eligibility — once per wallet per cycle |
+| `closeVintage()` | Admin | Burns all remaining admin-held tokens and closes the vintage cycle |
+
+## Vintage Cycle
+
+Each cycle mirrors Château Margaux's natural production calendar:
+
+1. Admin calls `mintVintage()` after harvest — 298,000 tokens minted to admin wallet
+2. Admin distributes tokens to investors via standard ERC-20 `transfer()`
+3. Admin calls `activateEntitlement()` — eligible holders can exercise their discount
+4. Admin calls `loadRevenue()` after vintage sale — distribution right activated
+5. Holders call `claimDistribution()` to generate on-chain proof of their revenue claim
+6. Admin calls `closeVintage()` — remaining admin tokens permanently burned
 
 ---
 
