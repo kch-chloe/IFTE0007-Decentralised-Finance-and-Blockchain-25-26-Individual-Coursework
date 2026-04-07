@@ -2,8 +2,6 @@
 
 ## **Module:** IFTE0007 Decentralised Finance and Blockchain, UCL 
 
----
-
 ## Overview
 
 CAVE is an ERC-20 fungible token representing a tokenised claim on the annual wine revenue stream and direct purchase entitlement rights of Château Margaux, Bordeaux, France. It embeds two independent economic rights within a single token:
@@ -12,8 +10,6 @@ CAVE is an ERC-20 fungible token representing a tokenised claim on the annual wi
 - **Wine purchase entitlement right** — 20% direct purchase discount for holders of 100+ tokens
 
 Both parameters are hardcoded as immutable constants and cannot be altered after deployment.
-
----
 
 ## Deployment
 
@@ -27,8 +23,6 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 | **Total Supply** | 298,000 |
 | **Decimals** | 0 |
 
----
-
 ## Key Design Features
 
 - **OpenZeppelin ERC-20** — standard transfer, approve, allowance, and balanceOf functions inherited automatically
@@ -36,8 +30,6 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 - **Vintage year stamping** — `_update()` override stamps each recipient with the current vintage year on every token transfer, preventing previous cycle tokens from claiming current cycle rights
 - **Independent rights activation** — entitlement right activated separately from revenue loading via `activateEntitlement()`
 - **Immutable constants** — `DISTRIBUTION_PERCENTAGE = 30` and `DISCOUNT_BPS = 2000` cannot be changed by anyone after deployment
-
----
 
 ## Contract Functions
 
@@ -60,8 +52,6 @@ Each cycle mirrors Château Margaux's natural production calendar:
 4. Admin calls `loadRevenue()` after vintage sale — distribution right activated
 5. Holders call `claimDistribution()` to generate on-chain proof of their revenue claim
 6. Admin calls `closeVintage()` — remaining admin tokens permanently burned
-
----
 
 ## Disclaimer
 
