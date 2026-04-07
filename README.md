@@ -1,6 +1,6 @@
 # CAVE Token — Chateau Access and Vintage Entitlement 
 
-## **Module:** IFTE0007 Decentralised Finance and Blockchain, UCL 
+**Module:** IFTE0007 Decentralised Finance and Blockchain, UCL 
 
 ## Overview
 
@@ -13,7 +13,6 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 
 ## Deployment
 
-| | |
 |---|---|
 | **Network** | Sepolia Testnet |
 | **Standard** | ERC-20 (OpenZeppelin) |
