@@ -45,16 +45,14 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 
 ## Demonstration 
 
-The `claimDistribution()` and `useEntitlement()` functions were not demonstrated on the testnet, as both require separate investor wallets to accurately reflect the intended holder-admin separation. The function logic is verifiable directly from the smart contract source code on GitHub. Only `mintVintage(year, supply)`, `activateEntitlement()`, and `loadRevenue(totalAmount)` are demonstrated in Sepolia Testnet.
+The `claimDistribution()` and `useEntitlement()` functions were not demonstrated on the Sepolia testnet, as both are more appropriately tested through separate investor wallets in order to reflect the intended distinction between holder and administrator roles. Their logic remains verifiable from the deployed contract interface and the smart contract source code on GitHub. Accordingly, the testnet demonstration focuses on selected lifecycle functions that were practical to execute within a single-wallet prototype environment, namely `mintVintage(year, supply)` and `activateEntitlement()`.
 
-The following functions were called on Sepolia testnet to demonstrate the vintage cycle:
+The following functions were called on the Sepolia testnet to demonstrate the prototype:
 
 | Function | Input | Description |
 |---|---|---|
-| `mintVintage(2024, 298000)` | year: 2024, supply: 298,000 | Supply anchored to Château Margaux's verified annual production volume |
-| `activateEntitlement()` | — | Entitlement right activated independently of revenue loading |
-| `loadRevenue(100000000)` | totalAmount: £100,000,000 | Based on analyst estimate of Château Margaux annual revenue |
-
+| `mintVintage(2024, 298000)` | year: 2024, supply: 298,000 | Fixed supply issuance anchored to Château Margaux’s verified annual production volume |
+| `activateEntitlement()` | — | Demonstrates activation of the entitlement mechanism within the token lifecycle |
 
 ## Vintage Cycle
 
