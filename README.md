@@ -43,11 +43,24 @@ Both parameters are hardcoded as immutable constants and cannot be altered after
 | `useEntitlement()` | Token holder | Records entitlement activation as on-chain proof of discount eligibility — once per wallet per cycle |
 | `closeVintage()` | Admin | Burns all remaining admin-held tokens and closes the vintage cycle |
 
+## Demonstration 
+
+The `claimDistribution()` and `useEntitlement()` functions were not demonstrated on the testnet, as both require separate investor wallets to accurately reflect the intended holder-admin separation. The function logic is verifiable directly from the smart contract source code on GitHub. Only `mintVintage(year, supply)`, `activateEntitlement()`, and `loadRevenue(totalAmount)` are demonstrated in Sepolia Testnet.
+
+The following functions were called on Sepolia testnet to demonstrate the vintage cycle:
+
+| Function | Input | Description |
+|---|---|---|
+| `mintVintage(2024, 298000)` | year: 2024, supply: 298,000 | Supply anchored to Château Margaux's verified annual production volume |
+| `activateEntitlement()` | — | Entitlement right activated independently of revenue loading |
+| `loadRevenue(100000000)` | totalAmount: £100,000,000 | Based on analyst estimate of Château Margaux annual revenue |
+
+
 ## Vintage Cycle
 
 Each cycle mirrors Château Margaux's natural production calendar:
 
-1. Admin calls `mintVintage()` after harvest — (e.g., 298,000) tokens minted to admin wallet
+1. Admin calls `mintVintage()` after harvest — tokens minted to admin wallet
 2. Admin distributes tokens to investors via standard ERC-20 `transfer()`
 3. Admin calls `activateEntitlement()` — eligible holders can exercise their discount
 4. Admin calls `loadRevenue()` after vintage sale — distribution right activated
